@@ -1,9 +1,5 @@
 body.login {
-    background-color: #FAFAFA;
-    background-image: url("../images/bg_amu.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
+    background-color: #f2eff2;
 }
 
 body.login div#login {
@@ -17,19 +13,24 @@ body.login div#login {
 }
 
 body.login div#login h1 {
+
 }
 
 body.login div#login h1 a {
+    background-image: url("../media/logo.png");
+    height: 65px;
+    width: 320px;
+    background-size: 120px 120px;
+    background-repeat: no-repeat;
+    padding-bottom: 60px;
 }
 
 body.login div#login form#loginform {
-    background-color: #E6E6E6;
+    background-color: white;
     border-radius: 3%;
     border: 2px solid darkgrey;
-}
-
-body.login div#login form#loginform:before {
-    content: "Service d'authentification";
+    display: flex;
+    flex-direction: column;
 }
 
 body.login div#login form#loginform p label {
@@ -54,6 +55,8 @@ body.login div#login form#loginform p.submit {
 }
 
 body.login div#login form#loginform p.submit input#wp-submit {
+    background-color: #00558b;
+    color: white;
 }
 
 body.login div#login p#nav {

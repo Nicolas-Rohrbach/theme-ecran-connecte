@@ -1,248 +1,31 @@
-@font-face {
-    font-family: "Titillium Web";
-    src: url("../fonts/Titillium-Regular.otf");
-}
-
-html {
-    margin: 0 !important;
-}
-
-/* CONTENT */
 body {
-    margin: 0;
-    padding: 0;
-    position: relative;
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #0a0a0a;
-    background-color: #F4F4F4;
-    font-size: 1.1rem;
+    background-color: #f2eff2;
 }
 
-#tv_body {
-    overflow: hidden;
-}
-
-.flex-content {
-    display: flex;
-    flex-direction: row;
-}
-
-main {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-}
-
-section {
-    border-radius: 2px;
-    padding: 10px;
+.container {
     background-color: white;
-}
-
-h1 {
-    font-size: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-family: "Titillium Web", sans-serif;
-    color: #00558a;
-    margin-bottom: .5rem;
-    font-style: normal;
-    font-weight: 400;
-}
-
-h2 {
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: "Titillium Web", sans-serif;
-    color: #00558a;
-    margin: 0;
-    font-style: normal;
-    font-weight: 300;
-}
-
-#content-none, #content-two, #content-left, #content-right, #content-tv {
-    margin-top: 10px;
-}
-
-#content-none {
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#content-right, #content-left {
-    width: 65%;
-}
-
-#content-tv {
-    width: 65%;
-}
-
-/* LINK */
-a {
-    line-height: inherit;
-    color: #00558a;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-a:focus, a:hover {
-    color: #00558a;
-}
-
-form input {
-    margin: 3px;
-}
-
-form button {
-    margin: 3px;
-}
-
-th {
-    font-size: 120%;
-}
-
-.tdcentered {
-    text-align: center;
-}
-
-
-td img {
-    max-width: 75px;
-    max-height: 75px;
-}
-
-table {
-    overflow-x: auto;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-thead {
-    color: #ffffff;
-    background-color: #00558a;
-}
-
-th {
-    color: #f8f9fa;
-}
-
-input[type=button], input[type=submit], input[type=reset], button {
-    display: inline;
-    width: auto;
-    text-align: center;
-    padding: 0.5rem 0.75rem;
-    background-color: #00558a;
-    font-size: 1rem;
-    color: #fff;
-    text-transform: uppercase;
-    border: none;
-    overflow: visible;
     border-radius: 5px;
+    min-height: 90vh;
+    margin-bottom: 10px;
 }
 
-.ninja {
-    opacity: 0;
-}
-
-.tablesize {
-    width: 100% !important;
-    font-size: smaller;
-}
-
-.firstSelect {
-    width: 98%;
-}
-
-.select {
-    margin-left: 2.5%;
-    float: left;
-    width: 65%;
-}
-
-.row input {
-    height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    float: left;
-    line-height: 1.5;
-    width: 30%;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
+.row {
     margin: 0;
 }
 
-@media (max-width: 1950px) {
-    .tablesize {
-        font-size: 0.6rem;
-    }
+h1, h2, h3 ,h4, h5, h6 {
+    color: #00558b;
 }
 
-@media (max-width: 1200px) {
-
-    .flex-content {
-        flex-direction: column;
-    }
-
-    #content-none, #content-two, #content-right, #content-left {
-        float: none;
-    }
-
-    #content-none, #content-two, #content-right, #content-left {
-        width: 90%;
-    }
+a, a:hover, a:link, a:visited, a:active {
+    color: #00558b;
 }
 
-@media (max-width: 800px) {
-
-    h1 {
-        font-size: 1.25rem;
-    }
-
-    h2 {
-        font-size: 1rem;
-    }
-
-    #content-twocolumns {
-        max-width: 100%;
-        font-size: 0.7rem;
-    }
-
-
-    input[type=button], input[type=submit], input[type=reset], button {
-        padding: 8px 8px;
-        font-size: 1rem;
-    }
+a:hover {
+    text-decoration: underline;
 }
 
-@media (max-width: 640px) {
-
-    th {
-        font-size: 100%;
-    }
-
-    #content {
-        width: 100%;
-        margin-right: 0;
-        margin-left: 0;
-    }
-
-    #content-twocolumns {
-        width: 100%;
-        margin-right: 0;
-        margin-left: 0;
-    }
-
-    .hide_mobile {
-        display: none !important;
-    }
-}
-
-@media (max-device-width: 768px) and (orientation: landscape) {
-    html {
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-    }
+.button_presentation_ecran {
+    border-color: #00558b;
+    color: #00558b;
 }

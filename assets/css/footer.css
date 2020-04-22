@@ -1,66 +1,8 @@
 /* FOOTER */
-
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-}
-
-#footer-left {
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    float: left;
-    width: 70%;
-}
-
-#footer-right {
-    bottom: 0;
-    right: 0;
-    position: fixed;
-    float: left;
-    width: 30%;
-}
-
-#footer_left {
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    float: left;
-    width: 30%;
-}
-
-#footer_right {
-    bottom: 0;
-    right: 0;
-    position: fixed;
-    float: left;
-    width: 70%;
-}
-
-@media (max-width: 1200px) {
-
-    footer {
-        position: relative;
-        left: auto;
-        bottom: auto;
-        float: left;
-    }
-
-    #footer-left {
-        width: 100%;
-        float: none;
-        position: relative;
-    }
-
-    #footer-right {
-        display: none;
-    }
-
-    .footer_wp {
-        float: none;
-        position: unset;
-        left: auto;
-        bottom: auto;
-    }
+.footer_ecran {
+    color: #ffffff;
+    background-color: #00558b;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
 }

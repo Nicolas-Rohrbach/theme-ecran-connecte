@@ -1,29 +1,7 @@
 /* SIDEBAR */
-
 .sidebar {
-    margin-top: 10px;
-    width: 30%;
+    min-width: 25%;
     background-color: white;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    margin: 0;
-    padding-left: 0;
-}
-
-@media (max-width: 1400px) {
-    .sidebar {
-        height: auto;
-    }
-}
-
-@media (max-width: 1200px) {
-    .sidebar {
-        margin: 10px 5% 0;
-        width: 90%;
-        min-height: 70vh;
-        float: none;
-        border-top: 1px solid darkgrey;
-    }
+    border-radius: 5px;
+    margin-bottom: 10px;
 }

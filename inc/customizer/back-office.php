@@ -274,20 +274,20 @@ add_action('customize_preview_init', array('MyTheme_Customize', 'live_preview'))
 $args = array(
     'width' => 345,
     'height' => 100,
-    'default-image' => get_template_directory_uri() . 'assets/images/header.png',
+    'default-image' => get_template_directory_uri() . 'assets/media/header.png',
     'uploads' => true,
 );
 add_theme_support('custom-header', $args);
 
 $args = array(
     'default-color' => '#ffffff',
-    'default-image' => '%1$s/images/background.jpg',
+    'default-image' => '%1$s/media/background.jpg',
 );
 add_theme_support('custom-background', $args);
 
 $args = array(
     'default-color' => '#ffffff',
-    'default-image' => '%1$s/images/background.jpg',
+    'default-image' => '%1$s/media/background.jpg',
 );
 add_theme_support('custom-header-background', $args);
 

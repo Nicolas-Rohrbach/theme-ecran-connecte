@@ -1,29 +1,22 @@
-<?php get_header();
-$current_user = wp_get_current_user();
-
-$id = "none";
-
-if (in_array("television", $current_user->roles)) {
-    $id = "-tv";
-}
-echo '
-<!-- MAIN -->
-<main id="content-' . $id . '">
-    <section>';
-
-if (have_posts()) {
-    while (have_posts()) : the_post(); ?>
-        <article class="post" id="post-<?php the_ID(); ?>">
-            <div class="post_content"><?php the_content(); ?></div>
-        </article>
-    <?php endwhile;
-}
-echo '
-    </section>
-</main>';
-
-get_footer();
-
-echo '
-    </body>
-</html>';
+<?php get_header(); ?>
+    <!-- MAIN -->
+    <main>
+        <div class="container">
+            <section class="content-area content-thin">
+                <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+                    <article class="article-full">
+                        <header>
+                            <!-- <h2><?php the_title(); ?></h2> -->
+                        </header>
+                        <?php the_content(); ?>
+                    </article>
+                <?php endwhile; else : ?>
+                    <article>
+                        <p>Sorry, no page was found!</p>
+                    </article>
+                <?php endif; ?>
+            </section>
+            <?php //get_sidebar(); ?>
+        </div>
+    </main>
+<?php get_footer(); ?>

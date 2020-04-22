@@ -9,7 +9,7 @@ add_filter('auto_update_plugin', '__return_true');
 add_filter('auto_update_theme', '__return_true');
 
 
-error_reporting(0);
+error_reporting(1);
 /*
 function wp_maintenance_mode()
 {
@@ -22,75 +22,43 @@ function wp_maintenance_mode()
 add_action('get_header', 'wp_maintenance_mode');
 */
 
+function add_scripts()
+{
+    //jQuery
+    wp_enqueue_script('jquery_cdn', 'https://code.jquery.com/jquery-3.4.1.slim.min.js');
+
+    //Bootstrap
+    wp_enqueue_style('bootstrap_css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
+    wp_enqueue_script('bootstrap_js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array('jquery_cdn'), '', true);
+
+    // CSS
+    wp_enqueue_style( 'style_ecran', get_template_directory_uri().'/style.css');
+    wp_enqueue_style( 'header_ecran_theme', get_template_directory_uri().'/assets/css/header.css');
+    wp_enqueue_style( 'content_ecran_theme', get_template_directory_uri().'/assets/css/content.css');
+    wp_enqueue_style( 'sidebar_ecran_theme', get_template_directory_uri().'/assets/css/sidebar.css');
+    wp_enqueue_style( 'footer_ecran_theme', get_template_directory_uri().'/assets/css/footer.css');
+}
+add_action('wp_enqueue_scripts', 'add_scripts');
+
 
 /**
  * Load all scripts (CSS / JS)
  */
 function add_theme_scripts()
 {
-    wp_enqueue_style('bootstrap-style', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', false, '', 'all');
-    //wp_enqueue_style('reset-style', get_template_directory_uri() . '/reset.css', false, '1.0', 'all');
-    wp_enqueue_style('main-style', get_template_directory_uri() . '/style.css', false, '1.0', 'all');
-    wp_enqueue_style('header-style', get_template_directory_uri() . '/assets/css/header.css', false, '1.0', 'all');
-    wp_enqueue_style('content-style', get_template_directory_uri() . '/assets/css/content.css', false, '1.0', 'all');
-    wp_enqueue_style('sidebar-style', get_template_directory_uri() . '/assets/css/sidebar.css', false, '1.0', 'all');
-    wp_enqueue_style('footer-style', get_template_directory_uri() . '/assets/css/footer.css', false, '1.0', 'all');
     wp_enqueue_script( 'theme-jquery', get_template_directory_uri() . '/assets/js/vendor/jquery-3.3.1.min.js', array (), '', false);
     wp_enqueue_script( 'theme-jqueryUI', get_template_directory_uri() . '/assets/js/vendor/jquery-ui.min.js', array ( 'jquery' ), '', false);
-    wp_enqueue_script('theme-menu', get_template_directory_uri() . '/assets/js/menu.js', array('jquery'), '', false);
-    wp_enqueue_script('theme-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array(), '', true);
-    wp_enqueue_script('theme-bootstrapjs', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', array(), '', true);
 }
-
-add_action('wp_enqueue_scripts', 'add_theme_scripts');
-
-/**
- * CSS admin
- */
-function admin_css()
-{
-
-    $admin_handle = 'admin_css';
-    $admin_stylesheet = get_template_directory_uri() . '/assets/css/admin.css';
-
-    wp_enqueue_style($admin_handle, $admin_stylesheet);
-}
-
-add_action('admin_print_styles', 'admin_css', 11);
-
-/**
- * Change the image for the logo
- */
-function my_login_logo()
-{ ?>
-    <style type="text/css">
-        #login h1 a, .login h1 a {
-            background-image: url(<?php echo get_stylesheet_directory_uri()."/assets/images/logo.png" ?>);
-            height: 65px;
-            width: 320px;
-            background-size: 120px 120px;
-            background-repeat: no-repeat;
-            padding-bottom: 60px;
-        }
-    </style>
-<?php }
-
-add_action('login_enqueue_scripts', 'my_login_logo');
+//add_action('wp_enqueue_scripts', 'add_theme_scripts');
 
 /**
  * CSS for login page
  */
 function my_login_stylesheet()
 {
-    wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/assets/css/login.css');
+    wp_enqueue_style('login_css', get_stylesheet_directory_uri() . '/assets/css/login.css');
 }
-
 add_action('login_enqueue_scripts', 'my_login_stylesheet');
-
-//Met la bonne heure
-global $wpdb;
-date_default_timezone_set('Europe/Paris');
-$wpdb->time_zone = 'Europe/Paris';
 
 /**
  * Remove the wordpress bar
@@ -106,16 +74,14 @@ function remove_admin_bar()
 /**
  * Disable the url /wp-admin except for the admin
  */
-add_action('init', 'wpm_admin_redirection');
 function wpm_admin_redirection()
 {
-    //Si on essaye d'accéder à L'administration Sans avoir le rôle administrateur
     if (is_admin() && !current_user_can('administrator')) {
-        // On redirige vers la page d'accueil
         wp_redirect(home_url());
         exit;
     }
 }
+add_action('init', 'wpm_admin_redirection');
 
 /**
  * Change the url of the logo
@@ -125,7 +91,6 @@ function my_login_logo_url()
 {
     return $_SERVER['HTTP_HOST'];
 }
-
 add_filter('login_headerurl', 'my_login_logo_url');
 
 /**
@@ -139,25 +104,26 @@ function my_login_logo_url_title()
 }
 add_filter('login_headertitle', 'my_login_logo_url_title');
 
+// Register a new navigation menu
+function add_Main_Nav()
+{
+    register_nav_menu('header-menu',__('Header Menu'));
+}
+add_action('init', 'add_Main_Nav');
+
 $args = array(
-    'width' => 345,
-    'height' => 100,
-    'default-image' => get_template_directory_uri() . 'assets/images/header.png',
-    'uploads' => true,
+    'flex-width'    => true,
+    'width'         => 500,
+    'flex-height'   => true,
+    'height'        => 500,
+    'default-image' => get_template_directory_uri() . '/assets/media/header.png',
 );
 add_theme_support('custom-header', $args);
 
-$args = array(
-    'default-color' => '#ffffff',
-    'default-image' => '%1$s/images/background.jpg',
-);
-add_theme_support('custom-background', $args);
-
-$args = array(
-    'default-color' => '#ffffff',
-    'default-image' => '%1$s/images/background.jpg',
-);
-add_theme_support('custom-header-background', $args);
+//Met la bonne heure
+global $wpdb;
+date_default_timezone_set('Europe/Paris');
+$wpdb->time_zone = 'Europe/Paris';
 
 // All sidebars
 if (function_exists('register_sidebar')) {
